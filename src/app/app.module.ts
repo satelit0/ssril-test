@@ -13,6 +13,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { GenderPipe } from './share/gender.pipe';
 import { ConvertDatePipe } from './share/pipes/convert-date.pipe';
 import { MainComponent } from './main/main.component';
+import { RegisterButtonsComponent } from './employee/components/register-buttons/register-buttons.component';
 
 
 @NgModule({
@@ -23,7 +24,8 @@ import { MainComponent } from './main/main.component';
     PositionComponent,
     GenderPipe,
     ConvertDatePipe,
-    MainComponent
+    MainComponent,
+    RegisterButtonsComponent
   ],
   imports: [
     BrowserModule,

@@ -1,0 +1,21 @@
+.container {
+    margin-top: -80px;
+    opacity: 1;
+      animation-name: fadeInOpacity;
+      animation-iteration-count: 1;
+      animation-timing-function: ease-in;
+      animation-duration: 1s;
+  }
+
+  button:nth-child(2) {
+    margin-left: 10px;
+  }
+  
+  @keyframes fadeInOpacity {
+      0% {
+          opacity: 0;
+      }
+      100% {
+          opacity: 1;
+      }
+  }
