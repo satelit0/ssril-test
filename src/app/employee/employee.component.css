@@ -1,0 +1,14 @@
+table {
+  width: 100%;
+}
+
+.bg-red {
+  color: red;
+}
+.bg-green {
+  color: green;
+}
+
+mat-form-field {
+  width: 100%;
+}
