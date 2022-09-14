@@ -9,6 +9,7 @@ import * as Notiflix from "notiflix";
 import * as moment from 'moment';
 import { MatDialog } from '@angular/material/dialog';
 import { DepartamentComponent } from '../departament/departament.component';
+import { PositionComponent } from '../position/position.component';
 
 export interface Employee {
   nombre?: string;
@@ -100,6 +101,12 @@ export class EmployeeComponent implements OnInit, OnDestroy {
 
   openDepartament() {
     this.dialog.open(DepartamentComponent, {
+      width: '700px',
+    });
+  }
+
+  openPosition() {
+    this.dialog.open(PositionComponent, {
       width: '700px',
     });
   }
