@@ -1,3 +1,11 @@
+.container {
+  margin-top: -90px;
+  opacity: 1;
+	animation-name: fadeInOpacity;
+	animation-iteration-count: 1;
+	animation-timing-function: ease-in;
+	animation-duration: 1s;
+}
 table {
   width: 100%;
 }
@@ -11,4 +19,14 @@ table {
 
 mat-form-field {
   width: 100%;
+}
+
+
+@keyframes fadeInOpacity {
+	0% {
+		opacity: 0;
+	}
+	100% {
+		opacity: 1;
+	}
 }
