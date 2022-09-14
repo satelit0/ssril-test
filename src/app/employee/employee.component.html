@@ -21,15 +21,42 @@
             <label for="name" class="form-label">Nombre</label>
             <input class="form-control" type="text" placeholder="Ingrese el nombre completo" name="name"
               formControlName="name">
+              <div *ngIf="employeeForm.controls['name'].invalid && (employeeForm.controls['name'].dirty || employeeForm.controls['name'].touched)" class="alert">
+                <ul>
+                  <li>
+                    <mat-error *ngIf="employeeForm.controls['name'].errors?.['required']">
+                      El nombre es un valor requerido
+                      </mat-error>   
+                  </li>
+                </ul>
+            </div>
           </div>
           <div class="mb-3">
             <label for="last_name" class="form-label">Apellidos</label>
             <input class="form-control" type="text" placeholder="Ingrese los apellido(s)" name="last_name"
                formControlName="last_name">
+               <div *ngIf="employeeForm.controls['last_name'].invalid && (employeeForm.controls['last_name'].dirty || employeeForm.controls['last_name'].touched)" class="alert">
+                <ul>
+                  <li>
+                    <mat-error *ngIf="employeeForm.controls['last_name'].errors?.['required']">
+                      El apellido es un valor requerido
+                      </mat-error>   
+                  </li>
+                </ul>
+            </div>
           </div>
           <div class="mb-3">
             <label for="date_of_birth" class="form-label">Fecha Nacimiento</label>
             <input class="form-control" type="date" name="date_of_birth" formControlName="date_of_birth">
+            <div *ngIf="employeeForm.controls['date_of_birth'].invalid && (employeeForm.controls['date_of_birth'].dirty || employeeForm.controls['date_of_birth'].touched)" class="alert">
+              <ul>
+                <li>
+                  <mat-error *ngIf="employeeForm.controls['date_of_birth'].errors?.['required']">
+                    La fecha de nacimiento es un valor requerido
+                    </mat-error>   
+                </li>
+              </ul>
+          </div>
           </div>
           <div class="form-check form-check-inline" *ngFor="let s of sex;let i = index">
             <input class="form-check-input" type="radio" [value]="s.id" name="sex" formControlName="sex">
