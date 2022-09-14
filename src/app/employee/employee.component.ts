@@ -21,6 +21,21 @@ export interface Employee {
   id_posicion?: number;
 }
 
+export interface GetEmployee {
+  id: number;
+  nombre: string;
+  apellidos: string;
+  sexo: string;
+  fecha_nacimiento: string;
+  empl_id_departamento: number;
+  pos_id_departamento: number;
+  pos_id: number;
+  descripcion_posicion: string;
+  dep_id: number;
+  des_departamento: string;
+  nom_departamento: string;
+}
+
 export interface Position {
   id: number;
   descripcion_posicion: string;
@@ -106,6 +121,7 @@ export class EmployeeComponent implements OnInit, OnDestroy {
   openDepartament() {
     this.dialog.open(DepartamentComponent, {
       width: '700px',
+      height: '500px'
     });
 
     this.dialog.afterAllClosed
@@ -146,17 +162,18 @@ export class EmployeeComponent implements OnInit, OnDestroy {
     );
   }
 
-  editEmployee(employee: Employee) {
+  editEmployee(employee: GetEmployee) {
+    console.log(employee);
     this.isEditable = true;
-    this.updatePositionChange(employee.id_departamento!);
+    this.updatePositionChange(employee.pos_id_departamento!);
     this.employeeForm.setValue({
       id: employee.id!,
       name: employee.nombre!,
       last_name: employee.apellidos!,
       date_of_birth: moment(employee.fecha_nacimiento!).format('yyyy-MM-DD'),
       sex: employee.sexo!,
-      departament: employee.id_departamento!,
-      position: employee.id_posicion!
+      departament: employee.dep_id!,
+      position: employee.pos_id!
     });
 
 
