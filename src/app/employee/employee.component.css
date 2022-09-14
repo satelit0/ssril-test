@@ -1,10 +1,10 @@
 .container {
-  margin-top: -20px;
+  margin-top: -90px;
   opacity: 1;
 	animation-name: fadeInOpacity;
 	animation-iteration-count: 1;
 	animation-timing-function: ease-in;
-	animation-duration: 2s;
+	animation-duration: 1s;
 }
 table {
   width: 100%;
