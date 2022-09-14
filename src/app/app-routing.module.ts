@@ -12,10 +12,7 @@ const routes: Routes = [
       { path: 'app', component: MainComponent, children: [
       { path: 'employee', component: EmployeeComponent },
       ] },
-      { path: 'employee', component: EmployeeComponent },
-      { path: 'departament', component: DepartamentComponent },
-      { path: 'position', component: PositionComponent },
-      { path: '**', redirectTo: 'employee' }
+      { path: '**', redirectTo: 'app/employee' }
     ]
   }
 ];

@@ -11,3 +11,7 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; padding: 0;
 .no-border {
   border: none !important;
 }
+
+.float-right {
+  float: right !important;
+}

@@ -23,7 +23,7 @@ import { MainComponent } from './main/main.component';
     PositionComponent,
     GenderPipe,
     ConvertDatePipe,
-    MainComponent
+    MainComponent,
   ],
   imports: [
     BrowserModule,

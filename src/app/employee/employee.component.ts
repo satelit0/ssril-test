@@ -7,6 +7,9 @@ import { DepartamentService } from '../services/departament.service';
 import { Department } from '../share/interfaces/departament.interface';
 import * as Notiflix from "notiflix";
 import * as moment from 'moment';
+import { MatDialog } from '@angular/material/dialog';
+import { DepartamentComponent } from '../departament/departament.component';
+import { PositionComponent } from '../position/position.component';
 
 export interface Employee {
   nombre?: string;
@@ -75,17 +78,15 @@ export class EmployeeComponent implements OnInit, OnDestroy {
   constructor(
     private employeeService: EmployeeService,
     private positionService: PositionService,
-    private departamentService: DepartamentService
+    private departamentService: DepartamentService,
+    private dialog: MatDialog
     ) { }
 
   ngOnInit(
 
   ) {
     this.getEmployees();
-    this.departamentService.getDepartament().subscribe( resp => {
-      this.department = resp;
-      console.log(resp)
-    });
+    this.getDepartaments();
   }
 
 
@@ -93,6 +94,30 @@ export class EmployeeComponent implements OnInit, OnDestroy {
     //Called once, before the instance is destroyed.
     //Add 'implements OnDestroy' to the class.
     this.suscription.unsubscribe();
+  }
+
+  getDepartaments() {
+    this.departamentService.getDepartament().subscribe( resp => {
+      this.department = resp;
+      console.log(resp)
+    });
+  }
+
+  openDepartament() {
+    this.dialog.open(DepartamentComponent, {
+      width: '700px',
+    });
+
+    this.dialog.afterAllClosed
+    .subscribe(() => {
+      this.getDepartaments();
+    })
+  }
+
+  openPosition() {
+    this.dialog.open(PositionComponent, {
+      width: '700px',
+    });
   }
 
   getEmployees() {

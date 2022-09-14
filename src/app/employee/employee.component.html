@@ -1,78 +1,85 @@
+<!-- <app-register-buttons></app-register-buttons> -->
 <div class="container">
-<div class="card no-border shadow p-3 mb-5 bg-white rounded">
-  <div class="card-body">
-    <div>
-      <h2>Empleados</h2>
-      <hr>
-
-      <form [formGroup]="employeeForm">
-        <div class="mb-3">
-          <label for="name" class="form-label">Nombre</label>
-          <input class="form-control" type="text"
-            placeholder="Ingrese el nombre completo" name="name" formControlName="name">
-        </div>
-        <div class="mb-3">
-          <label for="last_name" class="form-label">Apellidos</label>
-          <input class="form-control" type="text"
-            placeholder="Ingrese los apellido(s)" name="last_name" placeholder="Ingrese" formControlName="last_name">
-        </div>
-        <div class="mb-3">
-          <label for="date_of_birth" class="form-label">Fecha Nacimiento</label>
-          <input class="form-control" type="date" name="date_of_birth" formControlName="date_of_birth">
-        </div>
-        <div class="form-check form-check-inline" *ngFor="let s of sex;let i = index">
-          <input class="form-check-input" type="radio" [value]="s.id" name="sex" formControlName="sex">
-          <label class="form-check-label" for="sex">
-            {{ s.value }}
-          </label>
-        </div>
-
+  <div class="card no-border shadow p-3 mb-5 bg-white rounded">
+    <div class="card-body">
+      <div>
         <div class="row">
-          <div class="col-6">
-            <mat-form-field appearance="fill">
-              <mat-label>Selecione un departamento</mat-label>
-              <mat-select formControlName="departament" name="descriptionType"
-                (valueChange)="updatePositionChange($event)">
-                <mat-option *ngFor="let depart of department" [value]="depart.id">
-                  ({{depart.nom_departamento | uppercase}}) {{depart.des_departamento| titlecase}}
-                </mat-option>
-              </mat-select>
-            </mat-form-field>
+          <div class="col-12">
+            <button class="float-right" mat-button [matMenuTriggerFor]="menu"><mat-icon>more_vert</mat-icon></button>
+            <mat-menu #menu="matMenu">
+              <button mat-menu-item (click)="openDepartament()">Registrar Departamento</button>
+              <button mat-menu-item (click)="openPosition()">Registrar Posici&oacute;n</button>
+            </mat-menu>
 
           </div>
-          <div class="col-6">
-            <mat-form-field appearance="fill">
-              <mat-label>Selecione una posición</mat-label>
-              <mat-select [(ngModel)]="selectedValuePosition" name="position" [disabled]="isDisabledPosition" formControlName="position">
-                <mat-option *ngFor="let desc of descriptionType" [value]="desc.id">
-                  {{desc.descripcion_posicion | titlecase}}
-                </mat-option>
-              </mat-select>
-            </mat-form-field>
-
-          </div>
-          <div class="col-12 mb-3">
-            <button (click)="save();" mat-raised-button color="primary" [disabled]="!employeeForm.valid">
-              {{ isEditable ? "Actualizar" : "Guardar" }}
-            </button>
-          </div>
-
-
         </div>
+        <h2>Empleados</h2>
+        <hr>
+
+        <form [formGroup]="employeeForm">
+          <div class="mb-3">
+            <label for="name" class="form-label">Nombre</label>
+            <input class="form-control" type="text" placeholder="Ingrese el nombre completo" name="name"
+              formControlName="name">
+          </div>
+          <div class="mb-3">
+            <label for="last_name" class="form-label">Apellidos</label>
+            <input class="form-control" type="text" placeholder="Ingrese los apellido(s)" name="last_name"
+               formControlName="last_name">
+          </div>
+          <div class="mb-3">
+            <label for="date_of_birth" class="form-label">Fecha Nacimiento</label>
+            <input class="form-control" type="date" name="date_of_birth" formControlName="date_of_birth">
+          </div>
+          <div class="form-check form-check-inline" *ngFor="let s of sex;let i = index">
+            <input class="form-check-input" type="radio" [value]="s.id" name="sex" formControlName="sex">
+            <label class="form-check-label" for="sex">
+              {{ s.value }}
+            </label>
+          </div>
+
+          <div class="row">
+            <div class="col-6">
+              <mat-form-field appearance="fill">
+                <mat-label>Selecione un departamento</mat-label>
+                <mat-select formControlName="departament" name="descriptionType"
+                  (valueChange)="updatePositionChange($event)">
+                  <mat-option *ngFor="let depart of department" [value]="depart.id">
+                    ({{depart.nom_departamento | uppercase}}) {{depart.des_departamento| titlecase}}
+                  </mat-option>
+                </mat-select>
+              </mat-form-field>
+
+            </div>
+            <div class="col-6">
+              <mat-form-field appearance="fill">
+                <mat-label>Selecione una posición</mat-label>
+                <mat-select [(ngModel)]="selectedValuePosition" name="position" [disabled]="isDisabledPosition"
+                  formControlName="position">
+                  <mat-option *ngFor="let desc of descriptionType" [value]="desc.id">
+                    {{desc.descripcion_posicion | titlecase}}
+                  </mat-option>
+                </mat-select>
+              </mat-form-field>
+
+            </div>
+            <div class="col-12 mb-3">
+              <button (click)="save();" mat-raised-button color="primary" [disabled]="!employeeForm.valid">
+                {{ isEditable ? "Actualizar" : "Guardar" }}
+              </button>
+            </div>
+
+
+          </div>
 
 
 
-      </form>
+        </form>
 
-    </div>
+      </div>
 
 
-
-    <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
-
-      <!--- Note that these columns can be defined in any order.
-            The actual rendered columns are set as a property on the row definition" -->
-
+<table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
       <!-- Position Column -->
       <ng-container matColumnDef="no">
         <th mat-header-cell *matHeaderCellDef> ID </th>
@@ -127,10 +134,9 @@
         </td>
       </ng-container>
 
-
-      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-      <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
-    </table>
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+      </table>
+    </div>
   </div>
-</div>
 </div>

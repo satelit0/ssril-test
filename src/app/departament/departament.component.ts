@@ -2,6 +2,8 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ServicesService } from '../services.service';
 import { EmployeeService } from '../services/employee.service';
+import { DepartamentService } from '../services/departament.service';
+import { Department } from '../share/interfaces/departament.interface';
 
 
 
@@ -33,35 +35,47 @@ const ELEMENT_DATA: PeriodicElement[] = [
 
 })
 export class DepartamentComponent implements OnInit {
+  displayedColumns: string[] = ['id', 'name', 'desc'];
+  dataSource: Department[] = [];
 
+  nom_departamento!: string;
+  desc_departament!: string;
 
-
-
-  // miFormulario: FormGroup = this.fb.group({
-  //   genero: [ 'M', Validators.required ],
-  //   notificaciones: [ true, Validators.required ],
-  //   condiciones: [ false, Validators.requiredTrue ]
-  // });
-
-  // persona = {
-  //   genero: 'F',
-  //   notificaciones: true,
-  // }
-
-
-  constructor( private employeeService: EmployeeService ) { }
+  constructor(
+    private employeeService: EmployeeService,
+    private departamentService: DepartamentService,
+    ) { }
 
   ngOnInit(
 
   ) {
+    this.getDepartaments();
 
-    this.employeeService.getEmployees().subscribe(console.log
-    );
   }
 
+  save(){
+
+    const body = {
+      des_departamento: this.desc_departament,
+      nom_departamento: this.nom_departamento
+    }
+    console.log(body);
+
+    this.departamentService.createDepartament(body).subscribe( () =>{
+      this.nom_departamento = "";
+      this.desc_departament = "";
+      this.getDepartaments();
+    }
+    );
 
 
-  displayedColumns: string[] = ['position', 'name', 'weight', 'symbol'];
-  dataSource = ELEMENT_DATA;
+  }
+
+  getDepartaments(){
+    this.departamentService.getDepartament().subscribe( resp => {
+      this.dataSource  = resp;
+    } );
+  }
+
 
 }

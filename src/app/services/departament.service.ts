@@ -17,4 +17,9 @@ export class DepartamentService {
     return this.http.get<Department[]>(url);
   }
 
+  createDepartament(body: Department){
+    const url = `${ this.url_base }/create`;
+    return this.http.post<Department>(url, body);
+  }
+
 }
